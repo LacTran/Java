@@ -1,6 +1,6 @@
 Project name: dfdfd
 
-Description: Java OOP Project - GUI quiz
+Description: Java OOP Project - GUI quiz with the view that users can GUI elements and do quizzes
 
 Installation: use command line to clone to local repository
 
