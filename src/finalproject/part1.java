@@ -32,6 +32,7 @@ import java.util.HashMap;
 		String[][] qca;
 		int c = 0;
 		int qaid;
+		public static final int qnum=10;
 		HashMap<Integer, String> map;
 		
 		//rendering the interface with the structure of one question, 4 answers and a button
@@ -280,7 +281,7 @@ import java.util.HashMap;
 	
 			class Draw extends Canvas{
 	                    public void paint(Graphics g){
-	                                int qnum=10;
+	                                
 	                                int x=10;
 	                                int y=20;
 	                                for(int i=0;i<qnum;i++){
