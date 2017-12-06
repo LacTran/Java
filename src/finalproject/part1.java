@@ -40,7 +40,7 @@ import java.util.HashMap;
 			
 			initializedata();
 	        setTitle("Quiz Program");
-	        setDefaultCloseOperation(EXIT_ON_CLOSE);
+	        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 	        setSize(430,350);
 	        setLocation(300,100);
 	        setResizable(false);

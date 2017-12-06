@@ -19,11 +19,9 @@ import java.util.List;
 
 public class part2 extends JFrame implements ActionListener {
 
-	int code;
-	public JTextField txtAnswer;
-	public JLabel lblStudentInfo;
-	public JLabel message1;
-	public JLabel message2;
+	
+	private JLabel message1;
+	private JLabel message2;
 	JComboBox box;
 	JTextField input;
 	JPanel panel;
@@ -41,9 +39,15 @@ public class part2 extends JFrame implements ActionListener {
 	String[][] qpa;
 	String[][] qca;
 	HashMap<Integer, String> map;
-
+	
+	public part2(JPanel panel) {
+		this.panel= panel;
+	}
+	
 	//rendering the interface of part2
-	public void second() {
+	public void second(JPanel panel) {
+		
+		
 		
 		setTitle("Quiz Program");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -53,8 +57,6 @@ public class part2 extends JFrame implements ActionListener {
         Container cont=getContentPane();
         cont.setLayout(null);          
         cont.setBackground(Color.GRAY);
-        // choices=new ButtonGroup();
-        //textfield = new JTextField("Enter your answer here");
         choicea = new JCheckBox("Germany");
         choiceb = new JCheckBox("Portugal");
         choicec = new JCheckBox("Vietnam");
@@ -70,18 +72,18 @@ public class part2 extends JFrame implements ActionListener {
         btnext=new JButton("Next");
         btnext.setForeground(Color.GREEN);                
         btnext.addActionListener(new check2());
-        panel=new JPanel();
-        panel.setBackground(Color.LIGHT_GRAY);
-        panel.setLocation(10,10);
-        panel.setSize(400,300);
-        panel.setLayout(new GridLayout(6,2));
-        panel.add(lblmess);
-        panel.add(choicea);
-        panel.add(choiceb);
-        panel.add(choicec);
+        this.panel=new JPanel();
+        this.panel.setBackground(Color.LIGHT_GRAY);
+        this.panel.setLocation(10,10);
+        this.panel.setSize(400,300);
+        this.panel.setLayout(new GridLayout(6,2));
+        this.panel.add(lblmess);
+        this.panel.add(choicea);
+        this.panel.add(choiceb);
+        this.panel.add(choicec);
 
-        panel.add(btnext);
-        cont.add(panel);
+        this.panel.add(btnext);
+        cont.add(this.panel);
         setVisible(true);
 
   
@@ -92,7 +94,7 @@ public class part2 extends JFrame implements ActionListener {
 	public class check2 implements ActionListener{
 		public void actionPerformed(ActionEvent e) {
 			
-			if(choicea.isSelected()&&choiceb.isSelected()) {
+			if(choicea.isSelected()&&choiceb.isSelected()&& !choicec.isSelected()) {
 				passing mes = new passing();
 			
 			}
@@ -105,13 +107,18 @@ public class part2 extends JFrame implements ActionListener {
 	}
 
 	
-	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		// TODO Auto-generated method stub
 		
 	}
 	//displaying the annoucing message and one button to move on
 	public class passing extends JFrame implements ActionListener{
+		
+		
+		public JPanel panel;
+
+		
+
 		passing(){
 		setTitle("Correct");
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
@@ -126,15 +133,18 @@ public class part2 extends JFrame implements ActionListener {
         message1.setForeground(Color.BLUE);
         message1.setFont(new Font("Tahoma", Font.BOLD, 14));
         message1.setBounds(0, 41, 434, 44);
-        panel=new JPanel();
-        panel.setBackground(Color.LIGHT_GRAY);
-        panel.setLocation(10,10);
-        panel.setSize(400,100);
-		panel.add(message1);
-		panel.add(btnext);
-		cont.add(panel);
-		setVisible(true);
+        this.panel=new JPanel();
+        this.panel.setBackground(Color.LIGHT_GRAY);
+        this.panel.setLocation(10,10);
+        this.panel.setSize(400,100);
+        this.panel.add(message1);
+        this.panel.add(btnext);
+        cont.add(this.panel);
+        setVisible(true);
+        
 		}
+
+
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
@@ -143,8 +153,12 @@ public class part2 extends JFrame implements ActionListener {
 		}
 	}
 	
+	//displaying new window to show message and modify the panel
 	public class proceed implements ActionListener{
+		
+
 		public void actionPerformed(ActionEvent e) {
+			
 			JLabel message = new JLabel("Where does Santa Clause live?");
 			btnext = new JButton("Let's check");
 			btnext.addActionListener(new proceed2());
@@ -153,16 +167,19 @@ public class part2 extends JFrame implements ActionListener {
 			box.addItem("The US");
 			box.addItem("Vietnam");
 			panel.removeAll();
-	        panel.add(message);
-	        panel.add(box);
-	        panel.add(btnext);
-	        panel.revalidate();
-	        panel.repaint();
+			panel.add(message);
+			panel.add(box);
+			panel.add(btnext);
+			panel.revalidate();
+			panel.repaint();
 			
 		}
 	}
-	
+	//checking the second question and modify the panel again, for the last question
 	public class proceed2 implements ActionListener{
+		
+		
+
 		public void actionPerformed(ActionEvent e) {
 			
 			if(box.getSelectedItem().equals("Finland")) {
@@ -175,11 +192,11 @@ public class part2 extends JFrame implements ActionListener {
 				input = new JTextField();
 				input.setColumns(30);
 				panel.removeAll();
-		        panel.add(message);
-		        panel.add(input);
-		        panel.add(btnext);
-		        panel.revalidate();
-		        panel.repaint();
+				panel.add(message);
+				panel.add(input);
+				panel.add(btnext);
+				panel.revalidate();
+				panel.repaint();
 		     
 			}
 			else {
@@ -188,25 +205,25 @@ public class part2 extends JFrame implements ActionListener {
 		}
 
 	}
-
+	//checking the last question and display the final message when the answer is correct
 	public class proceed3 implements ActionListener{
 		public void actionPerformed(ActionEvent e) {
-
 			
-			if(input.getText()=="Donald Trump"){
-				
+			if(input.getText().equals("Donald Trump")){				
 					JOptionPane.showMessageDialog(null, "Well done! You have finished the quiz :)");
+					dispose();
 			
 			}
 			
 			else {
 				failing mess = new failing();
 			}
+			
 		}
 
 
 	}
-
+	//displaying the failing message when user chooses wrong
 	public class failing extends JFrame {
 		failing(){
 			JOptionPane.showMessageDialog(null, "Try again");

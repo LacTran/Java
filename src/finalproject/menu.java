@@ -71,14 +71,12 @@ public class menu extends JFrame implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method stub
 			if(quiz1.isSelected()) {
-				menupanel.setVisible(false); 
 				part1 open = new part1();
 				open.first();
 			}
 			else if (quiz2.isSelected()) {
-				menupanel.setVisible(false);
-				part2 open = new part2();
-				open.second();
+				part2 open = new part2(menupanel);
+				open.second(menupanel);
 			}
 		}
 
